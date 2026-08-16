@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  role      String   // "SITE_ENGINEER", "STORE_MANAGER", "ADMIN"
+  requests  MaterialRequest[]
+  auditLogs AuditLog[]
+  createdAt DateTime @default(now())
+}
+
+model Project {
+  id        Int      @id @default(autoincrement())
+  name      String
+  budget    Float
+  spent     Float    @default(0)
+  inventory Inventory[]
+  requests  MaterialRequest[]
+  createdAt DateTime @default(now())
+}
+
+model Material {
+  id        Int      @id @default(autoincrement())
+  name      String
+  unit      String
+  inventory Inventory[]
+  requests  MaterialRequest[]
+  createdAt DateTime @default(now())
+}
+
+model Inventory {
+  id         Int      @id @default(autoincrement())
+  projectId  Int
+  materialId Int
+  quantity   Int
+
+  project  Project  @relation(fields: [projectId], references: [id])
+  material Material @relation(fields: [materialId], references: [id])
+
+  @@unique([projectId, materialId])
+}
+
+model MaterialRequest {
+  id          Int      @id @default(autoincrement())
+  projectId   Int
+  materialId  Int
+  requestedBy Int
+  quantity    Int
+  status      String   @default("PENDING") // "PENDING", "APPROVED", "REJECTED"
+  reason      String?
+  createdAt   DateTime @default(now())
+
+  project Project  @relation(fields: [projectId], references: [id])
+  material Material @relation(fields: [materialId], references: [id])
+  user    User     @relation(fields: [requestedBy], references: [id])
+
+  auditLogs AuditLog[]
+}
+
+model AuditLog {
+  id        Int      @id @default(autoincrement())
+  requestId Int?
+  userId    Int
+  action    String
+  details   String?
+  createdAt DateTime @default(now())
+
+  request MaterialRequest? @relation(fields: [requestId], references: [id])
+  user    User             @relation(fields: [userId], references: [id])
+}
