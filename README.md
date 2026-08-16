@@ -11,27 +11,10 @@ Construction projects frequently need materials at one site while usable stock m
 Solution
 
 BuildGuard provides a focused workflow for:
-Material Request
-       ↓
-Validation
-       ↓
-Stock + Budget Check
-       ↓
- ┌─────┴──────┐
- ↓            ↓
-Approve      Reject
- ↓
-Inventory Update
- ↓
-Audit Log
+Material Request → Validation → Stock + Budget Check → [ Approve → Inventory Update → Audit Log ] OR [ Reject ]
 
 And:
-
-Insufficient local stock
-          ↓
-Search other projects
-          ↓
-Transfer opportunity
+Insufficient local stock → Search other projects → Transfer opportunity
 
 
 Disclaimer: BuildGuard is an independently developed prototype inspired by publicly observable construction ERP workflows. It is not affiliated with, endorsed by, or a reproduction of any proprietary Tactive software.
