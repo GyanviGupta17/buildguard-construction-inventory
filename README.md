@@ -27,13 +27,3 @@ npx prisma db push
 
 # Run development server
 npm run dev
-
-## 📸 Application Showcase
-
-![Dashboard Overview](docs/dashboard-demo1.png)
-
-![Material Request Flow](docs/dashboard-demo2.png)
-
-![Shortage Engine Output](docs/dashboard-demo3.png)
-
-![Rule Recommendation](docs/dashboard-demo5.png)
