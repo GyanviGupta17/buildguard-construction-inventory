@@ -27,3 +27,13 @@ npx prisma db push
 
 # Run development server
 npm run dev
+```
+## 📸 Application Showcase
+
+<img src="docs/dashboard-demo1.png" width="100%" />
+
+<img src="docs/dashboard-demo2.png" width="100%" />
+
+<img src="docs/dashboard-demo3.png" width="100%" />
+
+<img src="docs/dashboard-demo5.png" width="100%" />
